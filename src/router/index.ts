@@ -8,11 +8,6 @@ const syncRouter: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     redirect: '/plan',
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
   }
 ]
 

@@ -1,22 +1,23 @@
 <script setup lang="ts">
-  defineOptions({ name: 'planMain' })
+  import Overview from "@/views/plan/overview/index.vue";
 
-  import {ref} from "vue";
+  import Detail from "@/views/plan/detail/index.vue";
 
-  const k = ref<number>(1)
+  defineOptions({ name: 'planIndex' })
 </script>
 
 <template>
-  <div>1111</div>
-  <div>{{ k }}</div>
+  <div class="outer-plan-content">
+    <overview />
+    <detail />
+  </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.outer-plan-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 </style>
-
-<!--<script>-->
-<!--export default {-->
-<!--  name: 'planMain',-->
-<!--}-->
-<!--</script>-->
