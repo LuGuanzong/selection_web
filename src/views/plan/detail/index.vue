@@ -56,14 +56,14 @@ defineOptions({ name: 'planDetail' })
     &::before {
       position: absolute;
       border-radius: 6px;
-      height: 30px;
+      height: 40px;
       top: -10px;
       left: 10%;
       width: 80%;
       content: '星期一';
       background: #6699CC;
       text-align: center;
-      line-height: 30px;
+      line-height: 40px;
       color: #fff;
       font-weight: bold;
     }
