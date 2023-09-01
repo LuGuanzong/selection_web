@@ -20,8 +20,8 @@ const dayNames = [
 <template>
   <div class="detail-content">
     <div class="date-and-conclusion">
-      <div style="width: 300px; height: 300px; background: #fff; border-radius: 6px;">
-        日期
+      <div class="date">
+
       </div>
       <div style="width: 300px; flex-grow: 1; background: #fff; border-radius: 6px;">
         周总结
@@ -49,6 +49,24 @@ const dayNames = [
   gap: 12px;
 }
 
+.date {
+  width: 300px;
+  height: 300px;
+  background: #fff;
+  border-radius: 6px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: #6699CC;
+    width: 35px;
+    height: 35px;
+    border-radius: 200px 0 0;
+    transform: rotate(180deg)
+  }
+}
+
 .days {
   display: flex;
   justify-content: space-between;
@@ -60,22 +78,7 @@ const dayNames = [
     background: #fff;
     flex: 1 1 auto;
     border-radius: 12px;
-    position: relative;
-
-    &::before {
-      position: absolute;
-      border-radius: 6px;
-      height: 40px;
-      top: -10px;
-      left: 10%;
-      width: 80%;
-      content: '星期一';
-      background: #6699CC;
-      text-align: center;
-      line-height: 40px;
-      color: #fff;
-      font-weight: bold;
-    }
+    position: relative
   }
 }
 </style>

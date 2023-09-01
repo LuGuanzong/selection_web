@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Number from "@/views/plan/overview/number.vue";
+import NumberShow from "@/views/plan/overview/number.vue";
 import BarChart from "@/components/echarts/barChart.vue";
 import {reactive} from "vue";
 import LineChart from "@/components/echarts/lineChart.vue";
@@ -43,10 +43,10 @@ const option = {
     <div class="week">本周日期： 2023-3-6 至 2023-3-12</div>
 
     <div class="overview-items">
-      <number />
+      <NumberShow />
 
       <div class="overview-item title-number" >
-        <bar-chart width="100%" height="100%" :x-data="xData" :y-data="yData"  />
+        <BarChart width="100%" height="100%" :x-data="xData" :y-data="yData"  />
       </div>
 
       <div class="overview-item title-rate">

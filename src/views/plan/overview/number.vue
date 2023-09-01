@@ -1,6 +1,6 @@
 <!--展示数字概览-->
 <script setup lang="ts">
-defineOptions({ name: 'planOverview' })
+defineOptions({ name: 'NumberShow' })
 
 </script>
 
