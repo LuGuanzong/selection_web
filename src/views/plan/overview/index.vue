@@ -2,21 +2,42 @@
 import Number from "@/views/plan/overview/number.vue";
 import BarChart from "@/components/echarts/barChart.vue";
 import {reactive} from "vue";
+import LineChart from "@/components/echarts/lineChart.vue";
 
 defineOptions({ name: 'planOverview' })
 
 const xData = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 const yData = reactive([
-  { name: '总计划', data: [24, 25, 44, 24, 25, 44, 12] },
-  { name: '完成', data: [4, 5, 40, 14, 15, 4, 2] },
+  { name: '总计划', data: [24, 25, 44, 24, 25, 44, 12], itemStyle: { color: '#6699CC'}},
+  { name: '完成', data: [4, 5, 40, 14, 15, 4, 2], itemStyle: { color: '#FF9966'}},
+])
+const yData2 = reactive([
+  {
+    name: '完成率', data: [24, 25, 44, 24, 25, 44, 12],
+    lineStyle: { color: '#CC6699' },
+    itemStyle: { color: '#CC6699' }
+  }
 ])
 
+const option = {
+  yAxis: [
+    {
+      type: 'value',
+      axisLabel: {
+        show: true,
+        interval: 'auto',
+        formatter: '{value} %'
+      },
+      show: true
+    }
+  ]
+}
 </script>
 
 <template>
   <div class="overview-content">
     <h2>
-      <img alt="Vue logo" class="logo" src="@/assets/heartBroken.svg" width="40" height="40" style="margin-right: 5px;" />
+      <img alt="title logo" class="logo" src="@/assets/littleMan.svg" width="40" height="40" style="margin-right: 5px;" />
       每周规划概览
     </h2>
     <div class="week">本周日期： 2023-3-6 至 2023-3-12</div>
@@ -29,7 +50,7 @@ const yData = reactive([
       </div>
 
       <div class="overview-item title-rate">
-
+        <LineChart  width="100%" height="100%" :x-data="xData" :y-data="yData2" :option="option" />
       </div>
     </div>
   </div>

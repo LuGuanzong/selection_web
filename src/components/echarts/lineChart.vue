@@ -5,9 +5,9 @@ import {onMounted, reactive, markRaw, ref, computed, onUnmounted} from "vue"
 import * as uuid from 'uuid';
 
 
-interface BarChartData {
+interface LineChartData {
   name: string;
-  type: 'bar';
+  type: 'line';
   data: number[];
 }
 
@@ -20,23 +20,23 @@ export interface Props {
   yData: any[]
 }
 const props = withDefaults(defineProps<Props>(), {
-  id: () => 'barchart-' + uuid.v4(),
+  id: () => 'linechart-' + uuid.v4(),
   width: '200px',
   height: '200px',
   option: {},
 })
 
 const formatterYData = computed(() => {
-  const res = [] as BarChartData[]
+  const res = [] as LineChartData[]
   props.yData.forEach(item => {
     const tmp = {
       name: item.name,
-      type: 'bar',
+      type: 'line',
       data: item.data,
       smooth: true,
     }
     Object.assign(tmp, item)
-    res.push(tmp as BarChartData)
+    res.push(tmp as LineChartData)
   })
 
   return res
@@ -63,7 +63,9 @@ const option: ECOption = reactive({
     type: 'category',
     data: props.xData
   },
-  yAxis: {},
+  yAxis: {
+    type: 'value'
+  },
   series: formatterYData
 })
 
