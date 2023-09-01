@@ -1,11 +1,10 @@
 <script setup lang="ts">
 
 import Day from "@/views/plan/detail/day.vue";
-import {reactive} from "vue";
 
 defineOptions({ name: 'planDetail' })
 
-const dayNames = reactive([
+const dayNames = [
   { color: '#6699CC', label: '星期一' },
   { color: '#CC6699', label: '星期二' },
   { color: '#FF9966', label: '星期三' },
@@ -13,7 +12,7 @@ const dayNames = reactive([
   { color: '#CC6699', label: '星期五' },
   { color: '#FF9966', label: '星期六' },
   { color: '#6699CC', label: '星期日' },
-])
+]
 
 
 </script>

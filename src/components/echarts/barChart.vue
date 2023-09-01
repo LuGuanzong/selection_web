@@ -2,6 +2,8 @@
 import echarts from "@/utils/echarts";
 import { type ECOption } from "@/utils/echarts"
 import {onMounted, reactive, markRaw, ref, computed, onUnmounted} from "vue"
+import * as uuid from 'uuid';
+
 
 interface BarChartData {
   name: string;
@@ -18,7 +20,7 @@ export interface Props {
   yData: any[]
 }
 const props = withDefaults(defineProps<Props>(), {
-  id: 'barChart',
+  id: () => 'barchart-' + uuid.v4(),
   width: '200px',
   height: '200px',
   option: {},
