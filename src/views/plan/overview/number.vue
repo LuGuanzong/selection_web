@@ -7,11 +7,21 @@ defineOptions({ name: 'planOverview' })
 <template>
   <div class="number-content">
     <div class="data">
-      1
+      <div>
+        圆圈
+      </div>
+      <div>
+        数量
+      </div>
+      <div>
+        备注
+      </div>
     </div>
+
     <div class="data">
       1
     </div>
+
     <div class="data">
       1
     </div>
@@ -36,5 +46,9 @@ defineOptions({ name: 'planOverview' })
   background: #6699CC;
   flex: 1 0 auto;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 </style>
