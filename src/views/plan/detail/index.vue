@@ -1,5 +1,10 @@
 <script setup lang="ts">
+
+import Day from "@/views/plan/detail/day.vue";
+
 defineOptions({ name: 'planDetail' })
+
+
 </script>
 
 <template>
@@ -14,18 +19,19 @@ defineOptions({ name: 'planDetail' })
     </div>
 
     <div class="days">
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
+      <day />
+      <day />
+      <day />
+      <day />
+      <day />
+      <day />
+      <day />
+      <day />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .detail-content {
   background: rgba(153, 204, 255, 0.2);
   height: 100%;
