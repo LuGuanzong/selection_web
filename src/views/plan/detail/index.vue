@@ -1,8 +1,19 @@
 <script setup lang="ts">
 
 import Day from "@/views/plan/detail/day.vue";
+import {reactive} from "vue";
 
 defineOptions({ name: 'planDetail' })
+
+const dayNames = reactive([
+  { color: '#6699CC', label: '星期一' },
+  { color: '#CC6699', label: '星期二' },
+  { color: '#FF9966', label: '星期三' },
+  { color: '#6699CC', label: '星期四' },
+  { color: '#CC6699', label: '星期五' },
+  { color: '#FF9966', label: '星期六' },
+  { color: '#6699CC', label: '星期日' },
+])
 
 
 </script>
@@ -19,14 +30,7 @@ defineOptions({ name: 'planDetail' })
     </div>
 
     <div class="days">
-      <day />
-      <day />
-      <day />
-      <day />
-      <day />
-      <day />
-      <day />
-      <day />
+      <day v-for="(item, index) in dayNames" :key="index" :color="item.color" :label="item.label" />
     </div>
   </div>
 </template>

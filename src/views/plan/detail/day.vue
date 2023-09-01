@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import {ref} from "vue";
-
 defineOptions({ name: 'detailDay' })
 
-const kk = ref('#6699CC')
+export interface Props {
+  color?: string
+  label?: string
+}
+withDefaults(defineProps<Props>(), {
+  color: '6699CC',
+  label: ''
+})
 
 </script>
 
 <template>
   <div class="day-content">
-    <div :style="{'--bg-color': kk}" class="day-name">{{ 1 }}</div>
+    <div :style="{'background': color}" class="day-name">{{ label }}</div>
   </div>
 </template>
 
@@ -28,7 +33,6 @@ const kk = ref('#6699CC')
     top: -10px;
     left: 10%;
     width: 80%;
-    background: var(--bg-color);
     text-align: center;
     line-height: 40px;
     color: #fff;
