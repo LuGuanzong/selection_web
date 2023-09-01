@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import Number from "@/views/plan/overview/number.vue";
+import BarChart from "@/components/echarts/barChart.vue";
+import {reactive} from "vue";
 
 defineOptions({ name: 'planOverview' })
+
+const xData = reactive(['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'])
+const yData = reactive([
+  { name: '总计划', data: [24, 25, 44, 24, 25, 44, 12] },
+  { name: '完成', data: [4, 5, 40, 14, 15, 4, 2] },
+])
+
 </script>
 
 <template>
@@ -11,9 +20,11 @@ defineOptions({ name: 'planOverview' })
 
     <div class="overview-items">
       <number />
-      <div class="overview-item">
-        11
+
+      <div class="overview-item" >
+        <bar-chart id="main" width="100%" height="100%" :x-data="xData" :y-data="yData"  />
       </div>
+
       <div class="overview-item">
         222
       </div>
@@ -58,6 +69,8 @@ defineOptions({ name: 'planOverview' })
     flex: 1 1 auto;
     border-radius: 12px;
     background: #fff;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

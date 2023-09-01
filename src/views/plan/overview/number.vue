@@ -40,6 +40,7 @@ defineOptions({ name: 'planOverview' })
   border-radius: 12px;
   padding: 15px;
   display: flex;
+  flex-shrink: 0;
   justify-content: space-around;
   gap: 15px;
 
