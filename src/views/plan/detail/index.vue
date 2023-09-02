@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
 import Day from "@/views/plan/detail/day.vue";
+import Calendar from "@/views/plan/detail/calendar.vue";
 
 defineOptions({ name: 'planDetail' })
 
@@ -21,9 +21,10 @@ const dayNames = [
   <div class="detail-content">
     <div class="date-and-conclusion">
       <div class="date">
-
+        <calendar />
       </div>
-      <div style="width: 300px; flex-grow: 1; background: #fff; border-radius: 6px;">
+
+      <div style="width: 262px; flex-grow: 1; background: #fff; border-radius: 6px;">
         周总结
       </div>
     </div>
@@ -50,16 +51,19 @@ const dayNames = [
 }
 
 .date {
-  width: 300px;
-  height: 300px;
+  width: 262px;
+  height: 243px;
   background: #fff;
   border-radius: 6px;
   position: relative;
+  padding: 40px 20px 0 20px;
 
   &::before {
     content: '';
     position: absolute;
     background: #6699CC;
+    top: 0;
+    left: 0;
     width: 35px;
     height: 35px;
     border-radius: 200px 0 0;

@@ -12,7 +12,7 @@ interface LineChartData {
 }
 
 export interface Props {
-  id: string
+  id?: string
   width: string
   height: string
   option?: any
