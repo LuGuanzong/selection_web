@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Day from "@/views/plan/detail/day.vue";
 import Calendar from "@/views/plan/detail/calendar.vue";
+import {ref} from "vue";
 
 defineOptions({ name: 'planDetail' })
 
@@ -13,6 +14,8 @@ const dayNames = [
   { color: '#FF9966', label: '星期六' },
   { color: '#6699CC', label: '星期日' },
 ]
+
+const dayCheckList = ref([])
 
 
 </script>
@@ -30,7 +33,13 @@ const dayNames = [
     </div>
 
     <div class="days">
-      <day v-for="(item, index) in dayNames" :key="index" :color="item.color" :label="item.label" />
+      <day
+          v-for="(item, index) in dayNames"
+          :key="index"
+          :color="item.color"
+          :label="item.label"
+          v-model:check-list="dayCheckList"
+      />
     </div>
   </div>
 </template>

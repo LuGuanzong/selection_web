@@ -29,20 +29,17 @@ const datesWithPlaceholders = placeholdersStart.concat(dates).concat(placeholder
 // 初始化星期数组
 const weekDays = ['日', '一', '二', '三', '四', '五', '六']
 
-// 获取当前年月
-// const nowArray = now.toArray()
-
 // 获取当天是一个月内的第几天
 const dayInDate = now.get('date')
-const dayInDateCount = dayInDate + placeholdersStart.length
+const dayInDateCount = (dayInDate - 1) + placeholdersStart.length
 // 获取年月
-const dayInYear = now.get('year')
-const dayInMonth = now.get('month')
+const year = now.get('year')
+const month = now.get('month') + 1
 </script>
 
 <template>
   <h3 style="margin: 0 20px;">
-    <span class="year-date">{{ dayInYear }}</span> 年 <span class="year-date">{{ dayInMonth }}</span> 月
+    <span class="year-date">{{ year }}</span> 年 <span class="year-date">{{ month }}</span> 月
   </h3>
   <div class="days">
     <h4 class="day" v-for="(item, index) in weekDays" :key="index" >{{ item }}</h4>
