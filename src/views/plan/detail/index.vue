@@ -51,32 +51,33 @@ const dayCheckList = ref([])
   padding: 20px;
   display: flex;
   gap: 12px;
+  width: 100%;
 }
 
 .date-and-conclusion {
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
 
-.date {
-  width: 262px;
-  height: 243px;
-  background: #fff;
-  border-radius: 6px;
-  position: relative;
-  padding: 40px 20px 0 20px;
+  .date {
+    width: 262px;
+    height: 243px;
+    background: #fff;
+    border-radius: 6px;
+    position: relative;
+    padding: 40px 20px 0 20px;
 
-  &::before {
-    content: '';
-    position: absolute;
-    background: #6699CC;
-    top: 0;
-    left: 0;
-    width: 35px;
-    height: 35px;
-    border-radius: 200px 0 0;
-    transform: rotate(180deg)
+    &::before {
+      content: '';
+      position: absolute;
+      background: #6699CC;
+      top: 0;
+      left: 0;
+      width: 35px;
+      height: 35px;
+      border-radius: 200px 0 0;
+      transform: rotate(180deg)
+    }
   }
 }
 
@@ -85,13 +86,5 @@ const dayCheckList = ref([])
   justify-content: space-between;
   flex-grow: 1;
   gap: 12px;
-
-  .day {
-    height: 100%;
-    background: #fff;
-    flex: 1 1 auto;
-    border-radius: 12px;
-    position: relative
-  }
 }
 </style>

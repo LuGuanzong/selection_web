@@ -31,9 +31,13 @@ const changeCheck = (val: string[]) => {
   <div class="day-content">
     <div :style="{'background': color}" class="day-name">{{ label }}</div>
     <el-checkbox-group v-model="myChangeCheck" @change="changeCheck">
-      <el-checkbox label="Option A" />
-      <el-checkbox label="Option B" />
-      <el-checkbox label="Option C" />
+        <div class="checkboxes">
+            <el-checkbox label="Option A你好吗你好吗你好吗">
+              的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；
+            </el-checkbox>
+            <el-checkbox label="Option B" />
+            <el-checkbox label="Option C" />
+        </div>
     </el-checkbox-group>
   </div>
 </template>
@@ -59,5 +63,19 @@ const changeCheck = (val: string[]) => {
     color: #fff;
     font-weight: bold;
   }
+}
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+:deep .el-checkbox {
+  white-space: pre-wrap;
+  height: auto;
+}
+
+:deep .el-checkbox__label {
+  line-height: 20px;
 }
 </style>
