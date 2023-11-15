@@ -32,8 +32,8 @@ const changeCheck = (val: string[]) => {
     <div :style="{'background': color}" class="day-name">{{ label }}</div>
     <el-checkbox-group v-model="myChangeCheck" @change="changeCheck">
         <div class="checkboxes">
-            <el-checkbox label="Option A你好吗你好吗你好吗">
-              的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；的萨阿德是风口浪尖考虑到萨房间看了看；
+            <el-checkbox label="你好吗你好吗你好吗">
+              11
             </el-checkbox>
             <el-checkbox label="Option B" />
             <el-checkbox label="Option C" />

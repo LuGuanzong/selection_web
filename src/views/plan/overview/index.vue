@@ -37,7 +37,7 @@ const option = {
 <template>
   <div class="overview-content">
     <h2>
-      <img alt="title logo" class="logo" src="@/assets/littleMan.svg" width="40" height="40" style="margin-right: 5px;" />
+      <img alt="title logo" class="logo" src="@/assets/littleMan.svg" width="40" height="40" />
       每周规划概览
     </h2>
     <div class="week">本周日期： 2023-3-6 至 2023-3-12</div>
@@ -57,6 +57,10 @@ const option = {
 </template>
 
 <style scoped lang="scss">
+.logo {
+  margin-right: 5px;
+}
+
 .overview-content {
   background: #6699CC;
   height: 320px;

@@ -27,7 +27,7 @@ const dayCheckList = ref([])
         <calendar />
       </div>
 
-      <div style="width: 262px; flex-grow: 1; background: #fff; border-radius: 6px;">
+      <div style="width: 100%; flex-grow: 1; background: #fff; border-radius: 6px;">
         周总结
       </div>
     </div>
@@ -66,6 +66,7 @@ const dayCheckList = ref([])
     border-radius: 6px;
     position: relative;
     padding: 40px 20px 0 20px;
+    transition: 1s;
 
     &::before {
       content: '';
@@ -77,6 +78,15 @@ const dayCheckList = ref([])
       height: 35px;
       border-radius: 200px 0 0;
       transform: rotate(180deg)
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    .date {
+      width: 220px;
+      height: 210px;
+      transition: 1s;
+      padding-top: 20px;
     }
   }
 }
