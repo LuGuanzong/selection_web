@@ -35,7 +35,7 @@ const handleGoHome = () => {
       <svg-icon name="home" style="width: 16px; height: 16px;" />
     </div>
     <el-divider direction="vertical" />
-    <span>
+    <span style="color: #f2f2f2; font-weight: bold;">
       编辑下周计划
     </span>
   </div>
@@ -43,7 +43,7 @@ const handleGoHome = () => {
 
   <div class="header-place place-holder">占位用的</div>
   <div class="router-content">
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
@@ -84,7 +84,7 @@ const handleGoHome = () => {
 
 .router-content {
   width: 100%;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 50px);
   background: #EBF5FF;
 }
 </style>

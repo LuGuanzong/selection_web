@@ -1,9 +1,8 @@
 <script setup lang="ts">
-
 defineOptions({ name: 'svgIcon' })
 
 export interface Props {
-  prefix: string
+  prefix?: string
   name: string
 }
 const props = withDefaults(defineProps<Props>(), {

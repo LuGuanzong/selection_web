@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineOptions({ name: 'detailDay' })
+defineOptions({ name: 'dayForSave' })
 
 import {computed} from "vue";
 
@@ -32,13 +32,13 @@ const myChangeCheck = computed({
   <div class="day-content">
     <div :style="{'background': color}" class="day-name">{{ label }}</div>
     <el-checkbox-group v-model="myChangeCheck">
-        <div class="checkboxes">
-            <el-checkbox label="你好吗你好吗你好吗">
-              11
-            </el-checkbox>
-            <el-checkbox label="Option B" />
-            <el-checkbox label="Option C" />
-        </div>
+      <div class="checkboxes">
+        <el-checkbox label="你好吗你好吗你好吗">
+          11
+        </el-checkbox>
+        <el-checkbox label="Option B" />
+        <el-checkbox label="Option C" />
+      </div>
     </el-checkbox-group>
   </div>
 </template>
