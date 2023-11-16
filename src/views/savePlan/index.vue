@@ -15,7 +15,7 @@ const dayNames = [
   { color: '#6699CC', label: '星期日' },
 ]
 
-const dayCheckList = ref([])
+const taskList = ref<string[]>([''])
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const dayCheckList = ref([])
           :key="index"
           :color="item.color"
           :label="item.label"
-          v-model:check-list="dayCheckList"
+          v-model:task-list="taskList"
       />
     </div>
   </div>

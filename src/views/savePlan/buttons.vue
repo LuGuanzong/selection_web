@@ -11,7 +11,7 @@ defineOptions({ name: 'saveButtons' })
     <el-button size="default" :icon="Reading">带入本周计划</el-button>
     <el-button size="default" :icon="DocumentRemove">清空计划</el-button>
     <el-button size="default" :icon="DocumentAdd">恢复清空前计划</el-button>
-    <el-button type="primary" size="default" :icon="Upload">保存</el-button>
+    <el-button type="primary" size="default" :icon="Upload">提交</el-button>
   </div>
   <el-divider />
 </template>

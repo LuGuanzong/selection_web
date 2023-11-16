@@ -86,5 +86,6 @@ const handleGoHome = () => {
   width: 100%;
   height: calc(100vh - 50px);
   background: #EBF5FF;
+  overflow-y: scroll;
 }
 </style>
