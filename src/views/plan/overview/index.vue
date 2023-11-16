@@ -3,9 +3,18 @@ import NumberShow from "@/views/plan/overview/number.vue";
 import BarChart from "@/components/echarts/barChart.vue";
 import {reactive} from "vue";
 import LineChart from "@/components/echarts/lineChart.vue";
+import {useRouter} from "vue-router";
 
 defineOptions({ name: 'planOverview' })
 
+/**
+ * 初始化基本功能
+ */
+const router = useRouter()
+
+/**
+ * 初始化图标基本信息
+ */
 const xData = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 const yData = reactive([
   { name: '总计划', data: [24, 25, 44, 24, 25, 44, 12], itemStyle: { color: '#6699CC'}},
@@ -32,11 +41,18 @@ const option = {
     }
   ]
 }
+
+/**
+ * 暂时的跳转创建
+ */
+const handleGoPlanCreate = () => {
+  router.push({ name: 'save' })
+}
 </script>
 
 <template>
   <div class="overview-content">
-    <h2>
+    <h2 @click="handleGoPlanCreate" style="cursor: pointer;">
       <img alt="title logo" class="logo" src="@/assets/littleMan.svg" width="40" height="40" />
       每周规划概览
     </h2>
@@ -59,6 +75,7 @@ const option = {
 <style scoped lang="scss">
 .logo {
   margin-right: 5px;
+  color: red;
 }
 
 .overview-content {
