@@ -27,12 +27,13 @@ const handleGoHome = () => {
 
 <template>
   <div class="header-place header">
-    <div class="back highlight" @click="handleGoBack">
+    <div class="logo highlight" @click="handleGoBack">
       <svg-icon name="back" style="width: 20px; height: 20px;" />
-      <span>返回</span>
     </div>
     <el-divider direction="vertical" />
-    <svg-icon class="highlight" name="home" style="width: 16px; height: 16px;" @click="handleGoHome" />
+    <div class="logo highlight" @click="handleGoHome">
+      <svg-icon name="home" style="width: 16px; height: 16px;" />
+    </div>
     <el-divider direction="vertical" />
     <span>
       编辑下周计划
@@ -64,10 +65,10 @@ const handleGoHome = () => {
 }
 
 .place-holder {
-  background: rgba(153, 204, 255, 0.2);
+  background: #EBF5FF;
 }
 
-.back {
+.logo {
   display: flex;
   align-items: center;
   transition: .3s;
@@ -84,6 +85,6 @@ const handleGoHome = () => {
 .router-content {
   width: 100%;
   height: calc(100vh - 64px);
-  background: rgba(153, 204, 255, 0.2);
+  background: #EBF5FF;
 }
 </style>

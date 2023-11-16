@@ -46,7 +46,7 @@ const dayCheckList = ref([])
 
 <style scoped lang="scss">
 .detail-content {
-  background: rgba(153, 204, 255, 0.2);
+  background: #EBF5FF;
   height: 100%;
   padding: 20px;
   display: flex;
