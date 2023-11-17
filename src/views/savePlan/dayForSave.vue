@@ -2,7 +2,7 @@
 defineOptions({ name: 'dayForSave' })
 
 import { Edit, Rank } from '@element-plus/icons-vue'
-import {computed, ref, watch, watchEffect} from "vue";
+import { ref, watch, watchEffect} from "vue";
 import SvgIcon from "@/components/svgIcon.vue";
 import { VueDraggableNext as draggable } from 'vue-draggable-next'
 
@@ -12,28 +12,19 @@ import { VueDraggableNext as draggable } from 'vue-draggable-next'
 export interface Props {
   color?: string
   label?: string
-  taskList: string[]  // 当前的任务列表
+  date: string // 当前的日期
 }
 const props = withDefaults(defineProps<Props>(), {
   color: '6699CC', // 标题框背景色
   label: '', // 标题框文字
-  taskList: () => [] // 当前的任务列表
+  date: '' // 当前的日期
 })
-
-const emit = defineEmits(['update:taskList'])
 
 /**
- * 双向绑定一下任务列表
+ * 初始化任务列表
  */
 // 当前的任务列表
-const tasks = computed({
-  get() {
-    return props.taskList
-  },
-  set(val) {
-    emit('update:taskList', val)
-  }
-})
+const tasks = ref<string[]>([])
 
 /**
  * 编辑模式
@@ -110,8 +101,8 @@ watch(currStatus, (newV) => {
 
 <template>
   <div class="day-content">
-    <div :style="{'background': color}" class="day-name">
-      <span>{{ label }}</span>
+    <div :style="{'background': props.color}" class="day-name">
+      <span>{{ props.label }}</span>
       <el-popover
           v-if="currStatus === statusObj.preview"
           placement="top-start"
