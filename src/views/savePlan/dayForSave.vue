@@ -146,7 +146,7 @@ watch(currStatus, (newV) => {
             placement="top-start"
             effect="dark"
             trigger="hover"
-            content="暂存编辑"
+            content="暂存编辑，用于预览"
         >
           <template #reference>
             <svg-icon class="highlight" name="save" style="width: 17px; height: 17px;" @click="handleFinish" />
