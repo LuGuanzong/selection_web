@@ -103,13 +103,14 @@ watch(currStatus, (newV) => {
   <div class="day-content">
     <div :style="{'background': props.color}" class="day-name">
       <span>{{ props.label }}</span>
-      <el-popover
-          v-if="currStatus === statusObj.preview"
-          placement="top-start"
-          effect="dark"
-          trigger="hover"
-          content="编辑"
-      >
+      <span class="button-part">
+        <el-popover
+            v-if="currStatus === statusObj.preview"
+            placement="top-start"
+            effect="dark"
+            trigger="hover"
+            content="编辑任务内容"
+        >
         <template #reference>
           <el-icon :size="20" class="highlight" @click="handleStartEdit">
             <Edit />
@@ -152,6 +153,7 @@ watch(currStatus, (newV) => {
           </template>
         </el-popover>
       </template>
+      </span>
     </div>
 
     <template v-if="currStatus === statusObj.preview">
@@ -242,6 +244,12 @@ watch(currStatus, (newV) => {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    .button-part {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
   }
 }
 
