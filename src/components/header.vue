@@ -85,6 +85,8 @@ const handleGoHome = () => {
 .router-content {
   width: 100%;
   height: calc(100vh - 50px);
+  min-height: 400px;
+  min-width: 990px;
   background: #EBF5FF;
   overflow-y: scroll;
 }
