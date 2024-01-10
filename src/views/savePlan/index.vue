@@ -2,18 +2,9 @@
 import Buttons from "@/views/savePlan/buttons.vue"
 import {ref} from "vue"
 import DayForSave from "@/views/savePlan/dayForSave.vue";
+import {DayPanel} from "@/utils/dayPanel";
 
 defineOptions({ name: 'savePlan' })
-
-const dayNames = [
-  { color: '#6699CC', label: '星期一' },
-  { color: '#CC6699', label: '星期二' },
-  { color: '#FF9966', label: '星期三' },
-  { color: '#6699CC', label: '星期四' },
-  { color: '#CC6699', label: '星期五' },
-  { color: '#FF9966', label: '星期六' },
-  { color: '#6699CC', label: '星期日' },
-]
 
 const taskList = ref<string[]>([''])
 </script>
@@ -24,7 +15,7 @@ const taskList = ref<string[]>([''])
 
     <div class="days">
       <day-for-save
-          v-for="(item, index) in dayNames"
+          v-for="(item, index) in DayPanel"
           :key="index"
           :color="item.color"
           :label="item.label"

@@ -2,6 +2,7 @@
 import Day from "@/views/plan/detail/day.vue";
 import Calendar from "@/views/plan/detail/calendar.vue";
 import {ref} from "vue";
+import {DayPanel} from "@/utils/dayPanel";
 
 defineOptions({ name: 'planDetail' })
 
@@ -34,7 +35,7 @@ const dayCheckList = ref([])
 
     <div class="days">
       <day
-          v-for="(item, index) in dayNames"
+          v-for="(item, index) in DayPanel"
           :key="index"
           :color="item.color"
           :label="item.label"

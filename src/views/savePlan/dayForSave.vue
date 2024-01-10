@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {Status} from "@/utils/dayPanel";
+
 defineOptions({ name: 'dayForSave' })
 
 import { Edit, Rank } from '@element-plus/icons-vue'
@@ -9,7 +11,7 @@ import { VueDraggableNext as draggable } from 'vue-draggable-next'
 /**
  * 属性定义和事件定义
  */
-export interface Props {
+interface Props {
   color?: string
   label?: string
   date: string // 当前的日期
@@ -24,37 +26,32 @@ const props = withDefaults(defineProps<Props>(), {
  * 初始化任务列表
  */
 // 当前的任务列表
-const tasks = ref<string[]>([])
+const tasks = ref<string[]>([]);
 
 /**
  * 编辑模式
  */
-let currStatus = ref<number>(1) // 1: 预览模式；2: 拖拽模式； 3：编辑模式
-const statusObj = {
-  preview: 1,
-  drag: 2,
-  edit: 3
-}
+let currStatus = ref<Status>(Status.Preview)
 
 // 开启设置模式
-const handleStartEdit = () => currStatus.value = statusObj.edit
-const handleStartDrag = () => currStatus.value = statusObj.drag
+const handleStartEdit = () => currStatus.value = Status.Edit
+const handleStartDrag = () => currStatus.value = Status.Drag
 
 // 取消编辑模式
-const handleCancel = () => currStatus.value = statusObj.preview
+const handleCancel = () => currStatus.value = Status.Preview
 
 // 保存编辑结果
 const handleFinish = () => {
   const tmp = new Array(dragList.value.length)
   switch (currStatus.value) {
-  case statusObj.drag:
+  case Status.Drag:
     dragList.value.forEach((item, index) => {
       tmp[index] = item.name
     })
     tasks.value = tmp
     break;
   }
-  currStatus.value = statusObj.preview
+  currStatus.value = Status.Preview
 }
 
 // 保证至少有一项任务
@@ -80,13 +77,17 @@ const handleAddTask = () => {
 /**
  * 拖拽控制
  */
+interface DragItem {
+  name: string
+  id: number
+}
 // 临时存储拖拽信息的数组
-const dragList = ref([])
+const dragList = ref<DragItem[]>([])
 
 // 每次开始拖拽时，初始化信息
 watch(currStatus, (newV) => {
-  const tmp = []
-  if (newV === statusObj.drag) {
+  const tmp: DragItem[] = []
+  if (newV === Status.Drag) {
     tasks.value.forEach((item, index) => {
       tmp.push({
         name: item,
@@ -105,7 +106,7 @@ watch(currStatus, (newV) => {
       <span>{{ props.label }}</span>
       <span class="button-part">
         <el-popover
-            v-if="currStatus === statusObj.preview"
+            v-if="currStatus === Status.Preview"
             placement="top-start"
             effect="dark"
             trigger="hover"
@@ -118,7 +119,7 @@ watch(currStatus, (newV) => {
         </template>
       </el-popover>
       <el-popover
-          v-if="currStatus === statusObj.preview"
+          v-if="currStatus === Status.Preview"
           placement="top-start"
           effect="dark"
           trigger="hover"
@@ -131,7 +132,7 @@ watch(currStatus, (newV) => {
         </template>
       </el-popover>
 
-      <template v-else-if="currStatus !== statusObj.preview">
+      <template v-else>
         <el-popover
             placement="top-start"
             trigger="hover"
@@ -156,13 +157,13 @@ watch(currStatus, (newV) => {
       </span>
     </div>
 
-    <template v-if="currStatus === statusObj.preview">
+    <template v-if="currStatus === Status.Preview">
       <div class="task-str" v-for="(_, index) in tasks" :key="index">
         <span>{{ tasks[index] }}</span>
       </div>
     </template>
 
-    <template v-else-if="currStatus === statusObj.drag">
+    <template v-else-if="currStatus === Status.Drag">
       <draggable ghost-class="ghost" chosen-class="chosenClass" animation="300" :list="dragList">
         <div
             v-for="element in dragList"
@@ -174,7 +175,7 @@ watch(currStatus, (newV) => {
       </draggable>
     </template>
 
-    <template v-else-if="currStatus === statusObj.edit">
+    <template v-else-if="currStatus === Status.Edit">
       <div class="input-task"
            v-for="(_, index) in tasks"
            :key="index">

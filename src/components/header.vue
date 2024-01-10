@@ -36,7 +36,7 @@ const handleGoHome = () => {
     </div>
     <el-divider direction="vertical" />
     <span style="color: #f2f2f2; font-weight: bold;">
-      编辑下周计划
+      编辑本周计划
     </span>
   </div>
 
