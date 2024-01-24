@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@nguyenshort/vue3-mitt": "^0.0.4",
     "echarts": "^5.4.3",
     "element-plus": "^2.3.12",
     "pinia": "^2.1.6",
