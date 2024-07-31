@@ -42,9 +42,6 @@ const handleGoHome = () => {
 
 
   <div class="header-place place-holder">占位用的</div>
-  <div class="router-content">
-    <router-view />
-  </div>
 </template>
 
 <style scoped lang="scss">

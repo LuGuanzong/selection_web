@@ -1,21 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
-import planRouter from "@/router/plan"
 
-const syncRouter: RouteRecordRaw[] = [
+const syncRouter: any[] = [
   {
     path: '/',
     name: 'home',
-    redirect: '/plan',
+    component: () => import('@/views/home/index.vue')
   }
 ]
 
 const asyncRouter: RouteRecordRaw[] = [
-    ...planRouter,
+
 ]
 
-const router = createRouter({
+const router = createRouter(<any>{
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [...syncRouter, ...asyncRouter]
 })
