@@ -52,12 +52,10 @@ import {computed, ref} from "vue";
 import {changeOneStore, searchSkusByKeywords} from "@/api/product";
 import {Minus, Plus} from "@element-plus/icons-vue";
 import {formatDate} from "@/utils/time";
-import {ElMessage} from "element-plus";
 
 /**
  * 定义筛选条件
  */
-
 const form = ref({
   shelf: '',
   skcSku: ''
