@@ -20,12 +20,21 @@ service.interceptors.response.use(
     (response: AxiosResponse) => {
         const data = response.data
         console.log('response', response)
-        if (response.status === 200 && data.code === 0) {
-            ElMessage.error(data.msg || '请求成功')
-            return data;
+
+        // 检查HTTP状态码
+        if (response.status === 200) {
+            // 检查业务状态码
+            if (data.code === 0) {
+                ElMessage.success(data.msg || '请求成功');
+                return data;
+            } else {
+                ElMessage.error(data.msg || '业务逻辑错误');
+                return Promise.reject(new Error(data.msg || '业务逻辑错误'));
+            }
         } else {
-            ElMessage.error(data.msg || '请求失败')
-            Promise.reject();
+            // 处理HTTP错误
+            ElMessage.error(response.statusText || 'HTTP请求错误');
+            return Promise.reject(new Error(response.statusText || 'HTTP请求错误'));
         }
     },
     (error: AxiosError) => {

@@ -1,10 +1,12 @@
 <template>
-  这是库存页面
+  <change-one-store />
 </template>
 
 <script>
+import ChangeOneStore from "./changeOneStore.vue";
 export default {
-  name: "index"
+  name: "index",
+  components: {ChangeOneStore}
 }
 </script>
 
