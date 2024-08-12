@@ -31,7 +31,7 @@
 
         <template v-for="(secItem, secIndex) in item.children" :key="secIndex">
           <el-menu-item-group v-if="secItem.children" :index="secItem.name" :title="secItem.meta.title" >
-            <el-menu-item v-for="(thItem, thIndex) in secItem.children" :key="secIndex" :index="thIndex">
+            <el-menu-item v-for="(thItem, thIndex) in secItem.children" :key="secIndex" :index="thItem.name">
               <span>{{ thItem.meta.title }}</span>
             </el-menu-item>
           </el-menu-item-group>
@@ -77,6 +77,7 @@ const menuData = computed(() => asyncRouter || [])
 
 // 跳转到对应页面
 const handleGoToPage = (index) => {
+  console.log('index', index)
   router.push({name: index})
 }
 </script>

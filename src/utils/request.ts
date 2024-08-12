@@ -19,7 +19,6 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     (response: AxiosResponse) => {
         const data = response.data
-        console.log('response', response)
 
         // 检查HTTP状态码
         if (response.status === 200) {

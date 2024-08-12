@@ -19,10 +19,18 @@ export const createManySelection = (data) => {
 
 // 根据关键词搜索sku
 export const searchSkusByKeywords = (params) => {
-    console.log('params', params)
     return request({
         url: '/product/selection/search_skus_by_keywords',
         method: 'get',
         params
+    });
+};
+
+// 更改数量为1的库存
+export const changeOneStore = (data) => {
+    return request({
+        url: '/product/store/change_one_store',
+        method: 'post',
+        data
     });
 };
