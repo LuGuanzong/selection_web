@@ -17,14 +17,19 @@ const productRoute: any[]  = [
                 path: 'store',
                 name: prefix + '/store',
                 meta: { title: '库存' },
-                component: () => import('@/views/product/store/index.vue'),
                 children: [
                     {
-                        path: 'out-in',
-                        name: prefix + '/store/out-in',
-                        meta: { title: '出入库' },
-                        component: () => import('@/views/product/store/index.vue'),
+                        path: 'search',
+                        name: prefix + '/store/search',
+                        meta: { title: '查询' },
+                        component: () => import('@/views/product/store/search/index.vue'),
                     },
+                    {
+                        path: 'out-in',
+                        name: prefix + '/store/outIn',
+                        meta: { title: '出入库' },
+                        component: () => import('@/views/product/store/outIn/index.vue'),
+                    }
                 ]
             }
         ]
