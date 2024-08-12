@@ -36,6 +36,15 @@ export const changeOneStore = (data) => {
 };
 
 // 根据关键词搜索sku
+export const getAllShelf = (params) => {
+    return request({
+        url: '/product/store/get_all_shelf',
+        method: 'get',
+        params
+    });
+};
+
+// 根据关键词搜索sku
 export const searchSkuCount = (params) => {
     return request({
         url: '/product/store/search_sku_count',

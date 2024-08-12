@@ -2,7 +2,23 @@
   <div>
     <el-form label-width="120px" style="width: 80%; max-width:800px;" :disabled="disabled">
       <el-form-item label="货架">
-        <el-input v-model="form.shelf" placeholder="请输入货架号"  />
+        <el-select
+          v-model="form.shelf"
+          filterable
+          clearable
+          remote
+          reserve-keyword
+          placeholder="请选择货架号"
+          :remote-method="shelfRemoteMethod"
+          :loading="shelfLoading"
+        >
+          <el-option
+            v-for="item in shelfList"
+            :key="item"
+            :label="item"
+            :value="item"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item label="sku">
         <el-select
@@ -49,9 +65,14 @@
 
 <script lang="ts" setup>
 import {computed, ref} from "vue";
-import {changeOneStore, searchSkusByKeywords} from "@/api/product";
+import {changeOneStore, getAllShelf, searchSkusByKeywords} from "@/api/product";
 import {Minus, Plus} from "@element-plus/icons-vue";
 import {formatDate} from "@/utils/time";
+
+interface ListItem {
+  value: string
+  label: string
+}
 
 /**
  * 定义筛选条件
@@ -65,15 +86,29 @@ const form = ref({
 const disabled = ref(false)
 
 /**
- * 获取sku可选列表
+ * 获取货架号可选列表
  */
-interface SkuListItem {
-  value: string
-  label: string
+const shelfLoading = ref(false)
+const shelfList = ref<ListItem[]>([])
+
+// 关键词搜索对应sku
+const shelfRemoteMethod = (query: string) => {
+  shelfLoading.value = true
+  if (query) {
+    getAllShelf({keyword: query}).then(res => {
+      shelfList.value = res.data
+    }).finally(() => shelfLoading.value = false)
+  } else {
+    skuList.value = []
+    shelfLoading.value = false
+  }
 }
 
+/**
+ * 获取sku可选列表
+ */
 const loading = ref(false)
-const skuList = ref<SkuListItem[]>([])
+const skuList = ref<ListItem[]>([])
 
 // 格式化搜索到的sku
 const formatSkus = (originList: any[]) => {
@@ -91,7 +126,6 @@ const remoteMethod = (query: string) => {
   if (query) {
     searchSkusByKeywords({keywords: query}).then(res => {
       skuList.value = formatSkus(res.data || [])
-      console.log('skuList.value', skuList.value)
     }).finally(() => loading.value = false)
   } else {
     skuList.value = []

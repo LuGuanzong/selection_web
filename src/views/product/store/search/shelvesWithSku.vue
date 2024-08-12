@@ -25,8 +25,8 @@
       </el-form-item>
       <el-form-item>
         <ul style="display: flex; flex-direction: column;">
-          <li v-for="i in shelvesWithSku" :key="i" >
-            {{ i[1] }} ------ {{ i[2] }} 件
+          <li v-for="item in shelvesWithSku" :key="item.id" >
+            {{ item.article }} ------ {{ item.count }} 件
           </li>
         </ul>
       </el-form-item>
