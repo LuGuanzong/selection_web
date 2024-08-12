@@ -12,6 +12,7 @@
     class="el-menu-vertical"
     text-color="#fff"
     :collapse="isFolded"
+    @select="handleGoToPage"
   >
     <template v-for="(item, index) in menuData"  :key="index">
       <el-menu-item v-if="!item.children" :index="item.name">
@@ -50,7 +51,9 @@ import {computed} from "vue";
 import {asyncRouter} from "@/router";
 import SvgIcon from "@/components/svgIcon.vue";
 import {useSidebar} from "@/store/sidebar";
-import { useRoute } from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
+
+const router = useRouter()
 
 /**
  * 默认打开的设置
@@ -71,6 +74,11 @@ const isFolded = computed(() => sidebarStore.folded)
  * 菜单初始化
  */
 const menuData = computed(() => asyncRouter || [])
+
+// 跳转到对应页面
+const handleGoToPage = (index) => {
+  router.push({name: index})
+}
 </script>
 
 <style scoped lang="scss">
