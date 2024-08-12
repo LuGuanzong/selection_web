@@ -1,12 +1,14 @@
 <template>
   <div>
-    这是查询库存页面
+    <shelves-with-sku />
   </div>
 </template>
 
 <script>
+import ShelvesWithSku from "./shelvesWithSku.vue";
 export default {
-  name: "index"
+  name: "index",
+  components: {ShelvesWithSku}
 }
 </script>
 

@@ -34,3 +34,12 @@ export const changeOneStore = (data) => {
         data
     });
 };
+
+// 根据关键词搜索sku
+export const searchSkuCount = (params) => {
+    return request({
+        url: '/product/store/search_sku_count',
+        method: 'get',
+        params
+    });
+};
