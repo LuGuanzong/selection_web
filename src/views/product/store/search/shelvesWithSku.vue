@@ -81,12 +81,14 @@ const remoteMethod = (query: string) => {
 const shelvesWithSku = ref([])
 
 const handleSearch = () => {
+  shelvesWithSku.value = []
+  if(!form.value.skcSku) return
+
   const params = {
     skc: form.value.skcSku.split('-')[0],
     sku: form.value.skcSku.split('-')[1]
   }
 
-  shelvesWithSku.value = []
   searchSkuCount(params).then(res => {
     shelvesWithSku.value = res.data
   })
