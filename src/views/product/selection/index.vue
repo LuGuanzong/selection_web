@@ -1,7 +1,6 @@
 <template>
   <div class="handle-box">
       <import />
-    <button @click="handleTest">test</button>
   </div>
 </template>
 

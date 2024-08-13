@@ -1,13 +1,5 @@
 import request from '../utils/request';
 
-
-export const fetchHelloworld = () => {
-    return request({
-        url: '/',
-        method: 'get'
-    });
-};
-
 // 批量导入选品数据
 export const createManySelection = (data) => {
     return request({
