@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form label-width="120px" style="width: 80%; max-width:800px;" :disabled="disabled">
+    <el-form label-width="120px" style="width: 80%; min-width:400px;" :disabled="disabled">
       <el-form-item label="货架">
         <el-select
           v-model="form.shelf"
@@ -143,25 +143,27 @@ const buttonDisabled = computed(() => !(form.value.shelf && form.value.skcSku))
 const history = ref<string[]>([])
 // 记录每个sku的当前最终变化
 const finalChangeObj = ref({})
+const finalChangeKey = () => form.value.skcSku + form.value.shelf
 // 清空目前记录
 const handleDeleteHistory = () => {
   history.value = []
   finalChangeObj.value = {}
 }
 
-const temp: string = '【$time】【$skc-sku】刚完成 $op 1的操作，当前有记录的该产品的总变化为$final件'
+const temp: string = '【$time】【$skc-sku】【$shelf】刚完成 $op 1的操作，当前有记录的该产品在该货架的总变化为$final件'
 
 // 初步格式化模版
 const firstFormatTemp = () => {
   const currentTime = new Date();
   const formattedTime = formatDate(currentTime);
 
-  let total = finalChangeObj[form.value.skcSku].toString()
-  if (finalChangeObj[form.value.skcSku] > 0 ) total = '+' + total
+  let total = finalChangeObj[finalChangeKey()].toString()
+  if (finalChangeObj[finalChangeKey()] > 0 ) total = '+' + total
 
   return temp.replace('$time', formattedTime).
-  replace('$skc-sku', form.value.skcSku).
-  replace('$final', total)
+      replace('$shelf', form.value.shelf).
+      replace('$skc-sku', form.value.skcSku).
+      replace('$final', total)
 }
 
 // 构建库存更改请求
@@ -178,11 +180,11 @@ const buildStoreApi = (mode: 'add' | 'reduce') => {
 // 增加1个库存
 const handleAddOne = () => {
   disabled.value = true
-  if(!finalChangeObj[form.value.skcSku]) finalChangeObj[form.value.skcSku] = 0
-  finalChangeObj[form.value.skcSku]++
 
   buildStoreApi('add').then((res: any) => {
     if (res.code === 0) {
+      if(!finalChangeObj[finalChangeKey()]) finalChangeObj[finalChangeKey()] = 0
+      finalChangeObj[finalChangeKey()]++
       const historyStr = firstFormatTemp().replace('$op', '<span style="color: green;">加</span>')
       history.value.push(historyStr)
     }
@@ -192,11 +194,11 @@ const handleAddOne = () => {
 // 减少1个库存
 const handleMinusOne = () => {
   disabled.value = true
-  if(!finalChangeObj[form.value.skcSku]) finalChangeObj[form.value.skcSku] = 0
-  finalChangeObj[form.value.skcSku]--
 
-  buildStoreApi('add').then((res: any) => {
+  buildStoreApi('reduce').then((res: any) => {
     if (res.code === 0) {
+      if(!finalChangeObj[finalChangeKey()]) finalChangeObj[finalChangeKey()] = 0
+      finalChangeObj[finalChangeKey()]--
       const historyStr = firstFormatTemp().replace('$op', '<span style="color: red;">减</span>')
       history.value.push(historyStr)
     }
