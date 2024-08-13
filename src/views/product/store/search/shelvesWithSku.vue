@@ -11,6 +11,7 @@
           placeholder="请选择sku"
           :remote-method="remoteMethod"
           :loading="loading"
+          @change="handleSearch"
         >
             <el-option
               v-for="item in skuList"
@@ -19,9 +20,6 @@
               :value="item.value"
             />
         </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button :disabled="buttonDisabled" @click="handleSearch">查询</el-button>
       </el-form-item>
       <el-form-item>
         <ul style="display: flex; flex-direction: column;">
@@ -79,11 +77,7 @@ const remoteMethod = (query: string) => {
   }
 }
 
-/**
- * 查询库存信息
- */
-const buttonDisabled = computed(() => !form.value.skcSku)
-
+// 查询库存信息
 const shelvesWithSku = ref([])
 
 const handleSearch = () => {
@@ -95,7 +89,6 @@ const handleSearch = () => {
   shelvesWithSku.value = []
   searchSkuCount(params).then(res => {
     shelvesWithSku.value = res.data
-    console.log('shelvesWithSku', shelvesWithSku.value)
   })
 }
 
