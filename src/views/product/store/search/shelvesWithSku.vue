@@ -22,11 +22,19 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <ul style="display: flex; flex-direction: column;">
-          <li v-for="item in shelvesWithSku" :key="item.id" >
-            {{ item.article }} ------ {{ item.count }} 件
-          </li>
-        </ul>
+        <template v-if="shelvesWithSku.length > 0">
+          <div>
+            当前该产品共有：{{ total }} 件
+          </div>
+          <ul style="display: flex; flex-direction: column;">
+            <li v-for="item in shelvesWithSku" :key="item.id" >
+              {{ item.article }} ------ {{ item.count }} 件
+            </li>
+          </ul>
+        </template>
+        <div v-else>
+          当前所选sku的数量为0
+        </div>
       </el-form-item>
     </el-form>
   </div>
@@ -93,6 +101,13 @@ const handleSearch = () => {
     shelvesWithSku.value = res.data
   })
 }
+
+// 获取总数
+const total = computed(() => {
+  return shelvesWithSku.value.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.count;
+  }, 0);
+})
 
 </script>
 
