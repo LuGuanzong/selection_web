@@ -50,6 +50,10 @@ const fileList = ref<UploadUserFile[]>([])
 // 上传图片
 const uploadRef = ref<UploadInstance>()
 const handleUpload = () => {
+  if (fileList.value.length === 0) {
+    ElMessage.warning('请先上传图片')
+    return
+  }
   uploadRef.value!.submit()
 }
 
