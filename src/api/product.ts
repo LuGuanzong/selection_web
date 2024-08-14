@@ -10,11 +10,12 @@ export const createManySelection = (data) => {
 };
 
 // 根据关键词搜索sku
-export const searchSkusByKeywords = (params) => {
+export const searchSkusByKeywords = (params, showSuccessMessage) => {
     return request({
         url: '/product/selection/search_skus_by_keywords',
         method: 'get',
-        params
+        params,
+        meta: { showSuccessMessage }
     });
 };
 

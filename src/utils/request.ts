@@ -8,6 +8,10 @@ const service: AxiosInstance = axios.create({
 
 service.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+        if (!config.meta) {
+            config.meta = {};
+        }
+
         return config;
     },
     (error: AxiosError) => {
@@ -18,13 +22,16 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
     (response: AxiosResponse) => {
+        const { _, config } = response;
         const data = response.data
 
         // 检查HTTP状态码
         if (response.status === 200) {
             // 检查业务状态码
             if (data.code === 0) {
-                ElMessage.success(data.msg || '请求成功');
+                if (!config.meta?.showSuccessMessage) {
+                    ElMessage.success(data.msg || '请求成功');
+                }
                 return data;
             } else {
                 ElMessage.error(data.msg || '业务逻辑错误');

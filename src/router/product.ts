@@ -11,7 +11,15 @@ const productRoute: any[]  = [
                 path: 'selection',
                 name: prefix + '/selection',
                 meta: { title: '选品' },
-                component: () => import('@/views/product/selection/index.vue'),
+                // component: () => import('@/views/product/selection/index.vue'),
+                children: [
+                    {
+                        path: 'type-in',
+                        name: prefix + '/selection/type-in',
+                        meta: { title: '录入' },
+                        component: () => import('@/views/product/selection/index.vue'),
+                    }
+                ]
             },
             {
                 path: 'store',

@@ -124,7 +124,7 @@ const formatSkus = (originList: any[]) => {
 const remoteMethod = (query: string) => {
   loading.value = true
   if (query) {
-    searchSkusByKeywords({keywords: query}).then(res => {
+    searchSkusByKeywords({keywords: query}, true).then(res => {
       skuList.value = formatSkus(res.data || [])
     }).finally(() => loading.value = false)
   } else {

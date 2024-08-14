@@ -4,7 +4,7 @@ import productRoute from "@/router/product";
 const syncRouter: any[] = [
   {
     path: '/',
-    redirect: '/product/selection'
+    redirect: '/product/store/search'
   },
   {
     path: '/home',
