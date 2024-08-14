@@ -21,23 +21,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="sku">
-        <el-select
-          v-model="form.skcSku"
-          filterable
-          clearable
-          remote
-          reserve-keyword
-          placeholder="请选择sku"
-          :remote-method="remoteMethod"
-          :loading="loading"
-        >
-          <el-option
-            v-for="item in skuList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
+        <select-sku v-model="form.skcSku" />
       </el-form-item>
       <el-form-item label="库存操作">
         <el-button-group>
@@ -68,6 +52,7 @@ import {computed, ref} from "vue";
 import {changeOneStore, getAllShelf, searchSkusByKeywords} from "@/api/product";
 import {Minus, Plus} from "@element-plus/icons-vue";
 import {formatDate} from "@/utils/time";
+import SelectSku from "@/views/product/components/selectSku.vue";
 
 interface ListItem {
   value: string
@@ -99,37 +84,8 @@ const shelfRemoteMethod = (query: string) => {
       shelfList.value = res.data
     }).finally(() => shelfLoading.value = false)
   } else {
-    skuList.value = []
+    shelfList.value = []
     shelfLoading.value = false
-  }
-}
-
-/**
- * 获取sku可选列表
- */
-const loading = ref(false)
-const skuList = ref<ListItem[]>([])
-
-// 格式化搜索到的sku
-const formatSkus = (originList: any[]) => {
-  return originList.map(item => {
-      return {
-        value: `${item.skc_article}-${item.sku_article}`,
-        label: `${item.skc_article}-${item.sku_article}-${item.style}-${item.name}`
-      }
-  })
-}
-
-// 关键词搜索对应sku
-const remoteMethod = (query: string) => {
-  loading.value = true
-  if (query) {
-    searchSkusByKeywords({keywords: query}, true).then(res => {
-      skuList.value = formatSkus(res.data || [])
-    }).finally(() => loading.value = false)
-  } else {
-    skuList.value = []
-    loading.value = false
   }
 }
 

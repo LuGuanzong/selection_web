@@ -2,24 +2,7 @@
   <div>
     <el-form label-width="120px" style="width: 80%; max-width:800px;">
       <el-form-item label="sku">
-        <el-select
-          v-model="form.skcSku"
-          filterable
-          clearable
-          remote
-          reserve-keyword
-          placeholder="请选择sku"
-          :remote-method="remoteMethod"
-          :loading="loading"
-          @change="handleSearch"
-        >
-            <el-option
-              v-for="item in skuList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-        </el-select>
+        <select-sku v-model="form.skcSku" />
       </el-form-item>
       <el-form-item>
         <template v-if="shelvesWithSku.length > 0">
@@ -41,8 +24,10 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref} from "vue";
-import {searchSkuCount, searchSkusByKeywords} from "@/api/product";
+import {computed, ref, watchEffect} from "vue";
+import {searchSkuCount} from "@/api/product";
+import SelectSku from "@/views/product/components/selectSku.vue";
+
 
 /**
  * 定义筛选条件
@@ -52,43 +37,11 @@ const form = ref({
 })
 
 /**
- * 获取sku可选列表
+ * 查询库存信息
  */
-interface SkuListItem {
-  value: string
-  label: string
-}
-
-const loading = ref(false)
-const skuList = ref<SkuListItem[]>([])
-
-// 格式化搜索到的sku
-const formatSkus = (originList: any[]) => {
-  return originList.map(item => {
-      return {
-        value: `${item.skc_article}-${item.sku_article}`,
-        label: `${item.skc_article}-${item.sku_article}-${item.style}-${item.name}`
-      }
-  })
-}
-
-// 关键词搜索对应sku
-const remoteMethod = (query: string) => {
-  loading.value = true
-  if (query) {
-    searchSkusByKeywords({keywords: query}, true).then(res => {
-      skuList.value = formatSkus(res.data || [])
-    }).finally(() => loading.value = false)
-  } else {
-    skuList.value = []
-    loading.value = false
-  }
-}
-
-// 查询库存信息
 const shelvesWithSku = ref([])
 
-const handleSearch = () => {
+watchEffect(() => {
   shelvesWithSku.value = []
   if(!form.value.skcSku) return
 
@@ -100,7 +53,7 @@ const handleSearch = () => {
   searchSkuCount(params).then(res => {
     shelvesWithSku.value = res.data
   })
-}
+})
 
 // 获取总数
 const total = computed(() => {

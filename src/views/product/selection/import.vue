@@ -19,7 +19,6 @@ const importList = ref<any>([]);
 const beforeUpload: UploadProps['beforeUpload'] = async (rawFile) => {
     const fileData = await analysisExcel(rawFile);
     importList.value = fileData;
-    console.log('fileData', fileData)
 
     // 直接在这里调用API上传数据
     await createManySelection({
