@@ -32,7 +32,7 @@
             </li>
           </ul>
         </template>
-        <div v-else>
+        <div v-else-if="form.skcSku">
           当前所选sku的数量为0
         </div>
       </el-form-item>
