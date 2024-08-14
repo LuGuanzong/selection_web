@@ -17,7 +17,7 @@ const productRoute: any[]  = [
                         path: 'type-in',
                         name: prefix + '/selection/type-in',
                         meta: { title: '录入' },
-                        component: () => import('@/views/product/selection/index.vue'),
+                        component: () => import('@/views/product/selection/typeIn/index.vue'),
                     }
                 ]
             },
