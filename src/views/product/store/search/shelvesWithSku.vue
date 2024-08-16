@@ -4,7 +4,7 @@
       <el-form-item label="sku">
         <select-sku v-model="form.skcSku" />
       </el-form-item>
-      <el-form-item>
+      <el-form-item v-show="form.skcSku">
         <template v-if="shelvesWithSku.length > 0">
           <div>
             当前该产品共有：{{ total }} 件
@@ -15,9 +15,8 @@
             </li>
           </ul>
         </template>
-        <div v-else-if="form.skcSku">
-          当前所选sku的数量为0
-        </div>
+        <el-empty v-else description="当前所选sku的数量为0" />
+
       </el-form-item>
     </el-form>
   </div>

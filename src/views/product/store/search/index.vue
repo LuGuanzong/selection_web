@@ -1,15 +1,21 @@
 <template>
-  <div>
-    <shelves-with-sku />
-  </div>
+  <el-tabs v-model="activeName">
+    <el-tab-pane label="定位" name="shelvesWithSku">
+      <shelves-with-sku />
+    </el-tab-pane>
+    <el-tab-pane label="空仓" name="rest">
+      <rest />
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
-<script>
+<script lang="ts" setup>
 import ShelvesWithSku from "./shelvesWithSku.vue";
-export default {
-  name: "index",
-  components: {ShelvesWithSku}
-}
+
+import { ref } from 'vue'
+import Rest from "@/views/product/store/search/rest.vue";
+
+const activeName = ref('shelvesWithSku')
 </script>
 
 <style scoped>

@@ -31,7 +31,7 @@ export const changeOneStore = (data) => {
 // 获取所有货架号
 export const getAllShelf = (params) => {
     return request({
-        url: '/product/store/get_all_shelf',
+        url: '/product/store/all_shelf',
         method: 'get',
         params
     });
@@ -40,29 +40,18 @@ export const getAllShelf = (params) => {
 // 搜索sku在每个货仓数量
 export const searchSkuCount = (params) => {
     return request({
-        url: '/product/store/search_sku_count',
+        url: '/product/store/sku_count',
         method: 'get',
         params
     });
 };
 
-// 批量上传sku图片
-export const uploadImgs = (files) => {
-    // 创建一个 FormData 实例
-    const formData = new FormData();
-    console.log('files', files)
-    files.forEach((file, _) => {
-        // 这里简单使用 'files' 来接收多个文件
-        console.log('file', file)
-        formData.append('files', file);
-    });
 
+// 搜索sku在每个货仓数量
+export const searchRestRoom = (params) => {
     return request({
-        url: '/product/selection/upload_imgs',
-        method: 'post',
-        data: formData,
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+        url: '/product/store/valid_store_for_mat',
+        method: 'get',
+        params
     });
 };

@@ -32,7 +32,6 @@ import { Plus } from '@element-plus/icons-vue'
 
 import type {UploadProps, UploadUserFile, UploadInstance, UploadFile} from 'element-plus'
 import {ElMessage} from "element-plus";
-import {e} from "vite/dist/node/types.d-aGj9QkWt";
 
 const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
   console.log(uploadFile, uploadFiles)
