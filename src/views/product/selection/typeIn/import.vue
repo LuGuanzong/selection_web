@@ -1,3 +1,4 @@
+<!--通过xlsx表格上传选品-->
 <template>
   <el-upload action="#" :limit="1" accept=".xlsx, .xls" :show-file-list="false"
           :before-upload="beforeUpload">

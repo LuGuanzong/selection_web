@@ -4,12 +4,17 @@ import productRoute from "@/router/product";
 const syncRouter: any[] = [
   {
     path: '/',
-    redirect: '/product/store/search'
+    redirect: '/login'
   },
   {
     path: '/home',
     name: 'home',
     component: () => import('@/views/home.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue')
   }
 ]
 

@@ -1,3 +1,4 @@
+<!--上传sku图片-->
 <template>
   <div class="img-upload-contain">
     <el-upload

@@ -164,9 +164,6 @@ const handleMinusOne = () => {
 </script>
 
 <style scoped lang="scss">
-::v-deep(.custom-red-button) {
-  background-color: red !important;
-}
 
 .text-screen {
   max-height: 300px;
