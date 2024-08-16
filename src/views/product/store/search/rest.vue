@@ -40,14 +40,8 @@ import {searchRestRoom} from "@/api/product";
 const longestSide = ref('')
 
 const options = [
-  {
-    value: '40',
-    label: '40cm',
-  },
-  {
-    value: '50',
-    label: '50cm',
-  }
+  { value: '40', label: '40cm' },
+  { value: '50', label: '50cm' }
 ]
 
 // 存储返回的空余库存信息
