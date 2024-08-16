@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, CreateAxiosDefaults, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ElMessage } from 'element-plus'
+import {useRouter} from "vue-router";
 
 const service: AxiosInstance = axios.create({
     timeout: 5000,
@@ -44,7 +45,14 @@ service.interceptors.response.use(
         }
     },
     (error: AxiosError) => {
-        console.log(error);
+        if (error.response.status === 401) {
+            ElMessage.error('请先登录');
+            const currentDomain = window.location.origin
+            window.location = `${currentDomain}/login`
+        } else {
+            console.log(error);
+            ElMessage.error(error.message || '系统错误');
+        }
         return Promise.reject();
     }
 );

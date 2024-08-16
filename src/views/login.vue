@@ -4,13 +4,13 @@
       <div class="content">
           <h2>登录</h2>
           <div>
-              <input type="text" placeholder="请输入用户名">
+              <input type="text" placeholder="请输入用户名" v-model="username">
           </div>
           <div>
-              <input type="password" placeholder="请输入密码">
+              <input type="password" placeholder="请输入密码" v-model="password">
           </div>
           <div>
-              <input type="submit" value="登录">
+              <input type="submit" value="登录" @click="handleLogin" :disabled="pwdDisabled">
           </div>
       </div>
       <a href="#" class="btns" @click="dialogVisible = !dialogVisible">忘记密码</a>
@@ -39,8 +39,40 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
+import {login} from "@/api/user";
+import {ElMessage} from "element-plus";
+import {useRouter} from "vue-router";
 
+const router = useRouter()
+
+/**
+ * 嘿嘿嘿小弹窗
+ */
 const dialogVisible = ref(false)
+
+/**
+ * 登录逻辑
+ */
+const username = ref('')
+const password = ref('')
+
+const pwdDisabled = ref(false)
+
+const handleLogin = () => {
+  if (!username.value || !password.value) {
+    ElMessage.warning('请先补全账号密码')
+    return
+  }
+
+  const params = {
+    username: username.value,
+    password: password.value
+  }
+
+  pwdDisabled.value = true
+  login(params).then(() => router.push('/')).finally(() => pwdDisabled.value = false)
+}
+
 </script>
 
 <style scoped lang="scss">
