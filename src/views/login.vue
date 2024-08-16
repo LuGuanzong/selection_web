@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-content">
+  <div class="outer-content" style="background-image: url('src/assets/background.jpg');">
     <div class="box">
       <div class="content">
           <h2>登录</h2>
@@ -76,12 +76,7 @@ const handleLogin = () => {
 </script>
 
 <style scoped lang="scss">
-::v-deep(.wechat-img) {
-  background-color: red !important;
-}
-
 .outer-content {
-  background-image: url('src/assets/background.jpg');
   background-size: cover; /* 覆盖整个容器，图片可能会被裁剪以适配容器 */
   background-position: center; /* 图片居中显示 */
   height: 100vh;

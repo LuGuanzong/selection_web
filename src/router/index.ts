@@ -2,12 +2,12 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import productRoute from "@/router/product";
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import {getCookie} from "@/utils/cookie";
+import Cookies from 'js-cookie';
 
 const syncRouter: any[] = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/product/store/search'
   },
   {
     path: '/home',
@@ -35,7 +35,8 @@ router.beforeEach((to, from, next) => {
 
     if (to.name == 'login') {
       next()
-    } else if (!getCookie('session')) {
+    } else if (!Cookies.get('session')) {
+        console.log('11')
         next('/login');
     } else {
         next();

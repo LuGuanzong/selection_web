@@ -5,5 +5,8 @@ export function getCookie(name: string): string | null {
     return acc;
   }, {} as Record<string, string>);
 
+  console.log('name', name)
+  console.log('cookies', cookies)
+
   return cookies[name] || null;
 }
