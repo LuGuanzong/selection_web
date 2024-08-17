@@ -30,7 +30,7 @@ const router = createRouter(<any>{
   routes: [...syncRouter, ...asyncRouter]
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
     NProgress.start();
 
     if (to.name == 'login') {

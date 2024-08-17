@@ -49,7 +49,7 @@
 
 <script lang="ts" setup>
 import {computed, ref} from "vue";
-import {changeOneStore, getAllShelf, searchSkusByKeywords} from "@/api/product";
+import {changeOneStore, getAllShelf} from "@/api/product";
 import {Minus, Plus} from "@element-plus/icons-vue";
 import {formatDate} from "@/utils/time";
 import SelectSku from "@/views/product/components/selectSku.vue";
@@ -98,7 +98,7 @@ const buttonDisabled = computed(() => !(form.value.shelf && form.value.skcSku))
 // 记录库存变化
 const history = ref<string[]>([])
 // 记录每个sku的当前最终变化
-const finalChangeObj = ref({})
+const finalChangeObj = ref<any>({})
 const finalChangeKey = () => form.value.skcSku + form.value.shelf
 // 清空目前记录
 const handleDeleteHistory = () => {
@@ -113,8 +113,8 @@ const firstFormatTemp = () => {
   const currentTime = new Date();
   const formattedTime = formatDate(currentTime);
 
-  let total = finalChangeObj[finalChangeKey()].toString()
-  if (finalChangeObj[finalChangeKey()] > 0 ) total = '+' + total
+  let total = finalChangeObj.value[finalChangeKey()].toString()
+  if (finalChangeObj.value[finalChangeKey()] > 0 ) total = '+' + total
 
   return temp.replace('$time', formattedTime).
       replace('$shelf', form.value.shelf).
@@ -139,8 +139,8 @@ const handleAddOne = () => {
 
   buildStoreApi('add').then((res: any) => {
     if (res.code === 0) {
-      if(!finalChangeObj[finalChangeKey()]) finalChangeObj[finalChangeKey()] = 0
-      finalChangeObj[finalChangeKey()]++
+      if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
+      finalChangeObj.value[finalChangeKey()]++
       const historyStr = firstFormatTemp().replace('$op', '<span style="color: green;">加</span>')
       history.value.push(historyStr)
     }
@@ -153,8 +153,8 @@ const handleMinusOne = () => {
 
   buildStoreApi('reduce').then((res: any) => {
     if (res.code === 0) {
-      if(!finalChangeObj[finalChangeKey()]) finalChangeObj[finalChangeKey()] = 0
-      finalChangeObj[finalChangeKey()]--
+      if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
+      finalChangeObj.value[finalChangeKey()]--
       const historyStr = firstFormatTemp().replace('$op', '<span style="color: red;">减</span>')
       history.value.push(historyStr)
     }
