@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="change-store-container">
     <el-form label-width="120px" style="width: 80%; min-width:400px;" :disabled="disabled">
       <el-form-item label="货架">
         <el-select
@@ -164,7 +164,6 @@ const handleMinusOne = () => {
 </script>
 
 <style scoped lang="scss">
-
 .text-screen {
   max-height: 300px;
   overflow-y: scroll;
