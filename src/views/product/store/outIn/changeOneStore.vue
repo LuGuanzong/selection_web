@@ -130,7 +130,7 @@ const buildStoreApi = (mode: 'add' | 'reduce') => {
     skc: form.value.skcSku.split('-')[0],
     sku: form.value.skcSku.split('-')[1]
   }
-  return changeOneStore(params)
+  return changeOneStore(params, true)
 }
 
 // 增加1个库存

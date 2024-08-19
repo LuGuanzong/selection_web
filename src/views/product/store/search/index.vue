@@ -3,13 +3,13 @@
     <el-tab-pane label="定位" name="shelvesWithSku">
       <shelves-with-sku />
     </el-tab-pane>
-    <el-tab-pane label="空仓" name="rest">
+    <el-tab-pane label="仓位" name="rest">
       <div class="store">
-        <div style="flex-grow: 1">
+        <div style="width: 550px">
           <h3>查找仓位</h3>
           <rest />
         </div>
-        <div style="flex-grow: 14">
+        <div style="width: 100%">
           <h3>出入库</h3>
           <change-one-store style="flex-grow: 14" />
         </div>

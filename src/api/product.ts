@@ -20,11 +20,12 @@ export const searchSkusByKeywords = (params, showSuccessMessage) => {
 };
 
 // 更改数量为1的库存
-export const changeOneStore = (data) => {
+export const changeOneStore = (data, showSuccessMessage) => {
     return request({
         url: '/product/store/change_one_store',
         method: 'post',
-        data
+        data,
+        meta: { showSuccessMessage }
     });
 };
 
