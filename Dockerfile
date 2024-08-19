@@ -1,5 +1,5 @@
 # 第一阶段：构建Vue应用
-FROM node:20.16.0-alpine as build-stage
+FROM node:20.16.0-alpine AS build-stage
 LABEL maintainer="746722756@qq.com"
 # 设置工作目录
 WORKDIR /app
@@ -12,7 +12,7 @@ RUN npm run viteBuild
 
 # 第二阶段：设置Nginx服务器
 # 使用Nginx的官方Alpine镜像
-FROM nginx:1.21.0-alpine
+FROM nginx:alpine
 
 # 复制构建好的Vue应用静态文件到Nginx的html目录
 COPY --from=build-stage /app/dist /usr/share/nginx/html

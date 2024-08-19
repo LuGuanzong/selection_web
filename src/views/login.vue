@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-content" style="background-image: url('src/assets/background.jpg');">
+  <div class="outer-content" style="background-image: url('/assets/background.jpg');">
     <div class="box">
       <div class="content">
           <h2>登录</h2>
@@ -23,12 +23,12 @@
       style="background: transparent;text-align: center;gap: 10px;width: fit-content; padding: 0;"
       :show-close="false"
   >
-    <el-image src="src/assets/myWechat.jpg" fit="contain" style="height: 40vh;min-height: 300px;">
+    <el-image src="/assets/myWechat.jpg" fit="contain" style="height: 40vh;min-height: 300px;">
       <template #placeholder>
         <span>Loading...</span>
       </template>
     </el-image>
-    <el-image src="src/assets/myWechatPay.jpg" fit="contain" style="height: 40vh;min-height: 300px;margin-left: 10px;">
+    <el-image src="/assets/myWechatPay.jpg" fit="contain" style="height: 40vh;min-height: 300px;margin-left: 10px;">
       <template #placeholder>
         <span>Loading...</span>
       </template>
