@@ -2,23 +2,7 @@
   <div class="change-store-container">
     <el-form label-width="120px" style="width: 80%; min-width:400px;" :disabled="disabled">
       <el-form-item label="货架">
-        <el-select
-          v-model="form.shelf"
-          filterable
-          clearable
-          remote
-          reserve-keyword
-          placeholder="请选择货架号"
-          :remote-method="shelfRemoteMethod"
-          :loading="shelfLoading"
-        >
-          <el-option
-            v-for="item in shelfList"
-            :key="item"
-            :label="item"
-            :value="item"
-          />
-        </el-select>
+        <shelf-select v-model="form.shelf" />
       </el-form-item>
       <el-form-item label="sku">
         <select-sku v-model="form.skcSku" />
@@ -53,6 +37,7 @@ import {changeOneStore, getAllShelf} from "@/api/product";
 import {Minus, Plus} from "@element-plus/icons-vue";
 import {formatDate} from "@/utils/time";
 import SelectSku from "@/views/product/components/selectSku.vue";
+import ShelfSelect from "@/views/product/components/shelfSelect.vue";
 
 interface ListItem {
   value: string
@@ -69,25 +54,6 @@ const form = ref({
 
 // 是否阻止输入
 const disabled = ref(false)
-
-/**
- * 获取货架号可选列表
- */
-const shelfLoading = ref(false)
-const shelfList = ref<ListItem[]>([])
-
-// 关键词搜索对应sku
-const shelfRemoteMethod = (query: string) => {
-  shelfLoading.value = true
-  if (query) {
-    getAllShelf({keyword: query}).then(res => {
-      shelfList.value = res.data
-    }).finally(() => shelfLoading.value = false)
-  } else {
-    shelfList.value = []
-    shelfLoading.value = false
-  }
-}
 
 /**
  * 记录当前库存变化情况

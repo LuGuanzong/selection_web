@@ -56,3 +56,13 @@ export const searchRestRoom = (params) => {
         params
     });
 };
+
+
+// 搜索每个货仓具体有的货物
+export const getStoreProducts = (params) => {
+    return request({
+        url: '/product/store/shelf_products',
+        method: 'get',
+        params
+    });
+};

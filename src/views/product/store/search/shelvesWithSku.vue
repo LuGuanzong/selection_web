@@ -1,3 +1,4 @@
+<!--查询货物在哪个货仓-->
 <template>
   <div>
     <el-form label-width="120px" style="width: 80%; max-width:800px;">

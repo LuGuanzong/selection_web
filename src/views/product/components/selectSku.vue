@@ -53,8 +53,8 @@ const formatSkus = (originList: any[]) => {
   return originList.map(item => {
       return {
         value: `${item.skc_article}-${item.sku_article}`,
-        label: `${item.skc_article}-${item.sku_article}-${item.style}-${item.name}`,
-        imgUrl: item.img_url ? `${import.meta.env.VITE_APP_BASE_URL}/download/${item.img_url}` : ''
+        label: `${item.skc_article}-${item.sku_article}-${item.sku_style}-${item.skc_name}`,
+        imgUrl: item.sku_img_url ? `${import.meta.env.VITE_APP_BASE_URL}/download/${item.sku_img_url}` : ''
       }
   })
 }

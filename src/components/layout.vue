@@ -12,7 +12,11 @@
 
 
         <el-main>
-          <router-view />
+          <div class="main">
+            <el-scrollbar>
+              <router-view />
+            </el-scrollbar>
+          </div>
         </el-main>
 
 
@@ -26,8 +30,11 @@ import LayoutHeader from "@/components/layoutHeader.vue";
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .el-header-class {
   padding: 0;
+}
+.main {
+  height: calc(100vh - 110px);
 }
 </style>

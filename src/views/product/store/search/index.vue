@@ -15,6 +15,9 @@
         </div>
       </div>
     </el-tab-pane>
+    <el-tab-pane label="仓存" name="storeProduct">
+      <store-product />
+    </el-tab-pane>
   </el-tabs>
 </template>
 
@@ -24,6 +27,7 @@ import ShelvesWithSku from "./shelvesWithSku.vue";
 import { ref } from 'vue'
 import Rest from "@/views/product/store/search/rest.vue";
 import ChangeOneStore from "@/views/product/store/outIn/changeOneStore.vue";
+import StoreProduct from "@/views/product/store/search/storeProduct.vue";
 
 const activeName = ref('shelvesWithSku')
 </script>
