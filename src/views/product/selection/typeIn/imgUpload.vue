@@ -1,6 +1,10 @@
 <!--上传sku图片-->
 <template>
   <div class="img-upload-contain">
+    <el-radio-group v-model="matching">
+      <el-radio value="skuskc">通过skc-sku货号匹配</el-radio>
+      <el-radio label="style">通过型号匹配</el-radio>
+    </el-radio-group>
     <el-upload
         ref="uploadRef"
         v-model:file-list="fileList"
@@ -11,6 +15,7 @@
         :on-remove="handleRemove"
         :on-success="handleSuccess"
         :on-error="handleError"
+        :data="{ matching }"
       >
       <el-icon><Plus /></el-icon>
     </el-upload>
@@ -42,6 +47,11 @@ const handleRemove: UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
 const uploadUrl = computed(() => {
   return `${import.meta.env.VITE_APP_BASE_URL}/product/selection/upload_st_imgs`
 })
+
+/**
+ * 上传图片后的匹配方式
+ */
+const matching = ref('skuskc')
 
 /**
  * 批量上传sku图片

@@ -33,6 +33,7 @@
 <script lang="ts" setup>
 import {ref, defineModel, defineEmits, computed} from "vue";
 import {searchSkusByKeywords} from "@/api/product";
+import {genDownloadUrl} from "@/utils/download";
 
 const skcSku = defineModel()
 
@@ -54,7 +55,7 @@ const formatSkus = (originList: any[]) => {
       return {
         value: `${item.skc_article}-${item.sku_article}`,
         label: `${item.skc_article}-${item.sku_article}-${item.sku_style}-${item.skc_name}`,
-        imgUrl: item.sku_img_url ? `${import.meta.env.VITE_APP_BASE_URL}/download/${item.sku_img_url}` : ''
+        imgUrl: item.sku_img_url ? genDownloadUrl(item.sku_img_url) : ''
       }
   })
 }
