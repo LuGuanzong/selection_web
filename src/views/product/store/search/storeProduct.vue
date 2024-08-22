@@ -19,6 +19,18 @@
             :sortable="item.sortable"
             :width="item.width"
         />
+          <el-table-column label="图片">
+            <template #default="scope">
+              <el-image
+                  v-show="scope.row.sku_img_url"
+                  style="width: 60px; height: 60px;"
+                  :src="genDownloadUrl(scope.row.sku_img_url)"
+                  fit="fill"
+                  close-on-press-escape
+                  :preview-src-list="[genDownloadUrl(scope.row.sku_img_url)]"
+              />
+            </template>
+          </el-table-column>
       </el-table>
       <el-empty v-else-if="shelf" description="当前货仓没有商品" />
     </el-form>
@@ -29,6 +41,7 @@
 import {ref, watchEffect} from 'vue'
 import ShelfSelect from "@/views/product/components/shelfSelect.vue";
 import {getStoreProducts} from "@/api/product";
+import {genDownloadUrl} from "@/utils/download";
 
 /**
  * 货架号
@@ -46,7 +59,6 @@ const tableColumns = [
   { prop: "sku_style", label: "型号" },
   { prop: "sku_count_in_shelf", label: "仓内数量", width: '120', sortable: true },
   { prop: "sku_total", label: "库存总数", width: '120', sortable: true },
-  { prop: "sku_img_url", label: "图片链接" },
 ]
 
 watchEffect(() => {
