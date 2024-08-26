@@ -72,7 +72,7 @@ const handleDeleteHistory = () => {
   finalChangeObj.value = {}
 }
 
-const temp: string = '【$time】【$skc-sku】【$shelf】刚完成 $op 1的操作，当前有记录的该产品在该货架的总变化为$final件'
+const temp: string = '【$time】【$shelf】【$skc-sku】<br>刚完成 $op 1的操作，当前有记录的该产品在该货架的总变化为$final件'
 
 // 初步格式化模版
 const firstFormatTemp = () => {
@@ -104,12 +104,10 @@ const handleAddOne = () => {
   disabled.value = true
 
   buildStoreApi('add').then((res: any) => {
-    if (res.code === 0) {
-      if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
-      finalChangeObj.value[finalChangeKey()]++
-      const historyStr = firstFormatTemp().replace('$op', '<span style="color: green;">加</span>')
-      history.value.push(historyStr)
-    }
+    if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
+    finalChangeObj.value[finalChangeKey()]++
+    const historyStr = firstFormatTemp().replace('$op', '<span style="color: green;">加</span>')
+    history.value.push(historyStr)
   }).finally(() => disabled.value = false)
 }
 
@@ -118,12 +116,10 @@ const handleMinusOne = () => {
   disabled.value = true
 
   buildStoreApi('reduce').then((res: any) => {
-    if (res.code === 0) {
-      if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
-      finalChangeObj.value[finalChangeKey()]--
-      const historyStr = firstFormatTemp().replace('$op', '<span style="color: red;">减</span>')
-      history.value.push(historyStr)
-    }
+    if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
+    finalChangeObj.value[finalChangeKey()]--
+    const historyStr = firstFormatTemp().replace('$op', '<span style="color: red;">减</span>')
+    history.value.push(historyStr)
   }).finally(() => disabled.value = false)
 }
 
