@@ -22,8 +22,9 @@
             当前共能放下该类型产品：{{ total }} 件
           </div>
           <ul style="display: flex; flex-direction: column;">
-            <li v-for="item in restList" :key="item.article" >
-              {{ item.article }} ------ {{ item.count }} 件
+            <li v-for="item in restList" :key="item.article" style="display: flex;gap: 10px;">
+              <span>{{ item.article }} ------ {{ item.count }} 件</span>
+              <quick-out-in :shelf="item.article" />
             </li>
           </ul>
         </template>
@@ -36,6 +37,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import {searchRestRoom} from "@/api/product";
+import QuickOutIn from "@/views/product/components/quickOutIn.vue";
 
 const longestSide = ref('')
 

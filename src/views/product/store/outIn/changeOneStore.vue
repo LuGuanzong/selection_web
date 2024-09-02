@@ -1,6 +1,6 @@
 <template>
   <div class="change-store-container">
-    <el-form label-width="120px" style="width: 80%; min-width:400px;" :disabled="disabled">
+    <el-form label-width="120px" style=" min-width:400px;" :disabled="disabled">
       <el-form-item label="货架">
         <shelf-select v-model="form.shelf" />
       </el-form-item>
@@ -32,17 +32,14 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref} from "vue";
-import {changeOneStore, getAllShelf} from "@/api/product";
+import {computed, ref, onMounted, onUnmounted} from "vue";
+import {changeOneStore} from "@/api/product";
 import {Minus, Plus} from "@element-plus/icons-vue";
 import {formatDate} from "@/utils/time";
 import SelectSku from "@/views/product/components/selectSku.vue";
 import ShelfSelect from "@/views/product/components/shelfSelect.vue";
+import emitter from "@/utils/emitter";
 
-interface ListItem {
-  value: string
-  label: string
-}
 
 /**
  * 定义筛选条件
@@ -54,6 +51,17 @@ const form = ref({
 
 // 是否阻止输入
 const disabled = ref(false)
+
+// 接收兄弟组件带入数据
+const initQuickOutIn = (data) => {
+  form.value.shelf = data.shelf || ''
+  form.value.skcSku = data.skcsku || ''
+}
+
+onMounted(() => {
+  emitter.on('quickOutIn', data => initQuickOutIn(data))
+})
+onUnmounted(() => emitter.off('quickOutIn'))
 
 /**
  * 记录当前库存变化情况
@@ -103,7 +111,7 @@ const buildStoreApi = (mode: 'add' | 'reduce') => {
 const handleAddOne = () => {
   disabled.value = true
 
-  buildStoreApi('add').then((res: any) => {
+  buildStoreApi('add').then((_: any) => {
     if(!finalChangeObj.value[finalChangeKey()]) finalChangeObj.value[finalChangeKey()] = 0
     finalChangeObj.value[finalChangeKey()]++
     const historyStr = firstFormatTemp().replace('$op', '<span style="color: green;">加</span>')

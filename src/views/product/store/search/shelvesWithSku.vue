@@ -11,8 +11,9 @@
             当前该产品共有：{{ total }} 件
           </div>
           <ul style="display: flex; flex-direction: column;">
-            <li v-for="item in shelvesWithSku" :key="item.id" >
-              {{ item.article }} ------ {{ item.count }} 件
+            <li v-for="item in shelvesWithSku" :key="item.id" style="display: flex;gap: 10px;">
+              <span>{{ item.article }} ------ {{ item.count }} 件</span>
+              <quick-out-in :shelf="item.article" :skcsku="form.skcSku" />
             </li>
           </ul>
         </template>
@@ -27,6 +28,7 @@
 import {computed, ref, watchEffect} from "vue";
 import {searchSkuCount} from "@/api/product";
 import SelectSku from "@/views/product/components/selectSku.vue";
+import QuickOutIn from "@/views/product/components/quickOutIn.vue";
 
 
 /**
@@ -52,6 +54,7 @@ watchEffect(() => {
 
   searchSkuCount(params).then(res => {
     shelvesWithSku.value = res.data
+    console.log('res.data', res.data)
   })
 })
 

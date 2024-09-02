@@ -31,11 +31,11 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, defineModel, defineEmits, computed} from "vue";
+import {ref, defineModel, defineEmits, computed, type ModelRef, defineProps, watch, watchEffect} from "vue";
 import {searchSkusByKeywords} from "@/api/product";
 import {genDownloadUrl} from "@/utils/download";
 
-const skcSku = defineModel()
+const skcSku: ModelRef<unknown | undefined, string> = defineModel()
 
 /**
  * 获取sku可选列表
@@ -72,6 +72,16 @@ const remoteMethod = (query: string) => {
     loading.value = false
   }
 }
+watchEffect(() => {
+  if (skcSku.value) {
+    const skcSkuList = skcSku.value.split('-')
+    const query = skcSkuList[0] + ' ' + skcSkuList[1]
+    loading.value = true
+    searchSkusByKeywords({keywords: query}, true).then(res => {
+      skuList.value = formatSkus(res.data || [])
+    }).finally(() => loading.value = false)
+  }
+})
 
 /**
  * 获取缩略图
@@ -80,6 +90,8 @@ const imgUrl = computed(() => {
   if (!skcSku.value) return ''
 
   const skuInfo = skuList.value.find(item => item.value === skcSku.value)
+  if (!skuInfo) return ''
+
   return skuInfo.imgUrl
 })
 
