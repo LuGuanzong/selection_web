@@ -22,8 +22,8 @@
             当前共能放下该类型产品：{{ total }} 件
           </div>
           <ul style="display: flex; flex-direction: column;">
-            <li v-for="item in restList" :key="item.article" style="display: flex;gap: 10px;">
-              <span>{{ item.article }} ------ {{ item.count }} 件</span>
+            <li v-for="item in restList.sort((a, b) => a.more - b.more)" :key="item.article" style="display: flex;gap: 10px;">
+              <span>{{ item.article }} ------ {{ item.count }} 件 ---- 最长边为“{{ item.more }}”的地垫比较多</span>
               <quick-out-in :shelf="item.article" />
             </li>
           </ul>
