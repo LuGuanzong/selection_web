@@ -23,7 +23,7 @@
           </div>
           <ul style="display: flex; flex-direction: column;">
             <li v-for="item in restList.sort((a, b) => a.more - b.more)" :key="item.article" style="display: flex;gap: 10px;">
-              <span>{{ item.article }} ------ {{ item.count }} 件 ---- 最长边为“{{ item.more }}”的地垫比较多</span>
+              <span>{{ item.article }} ------ {{ item.count }} 件 {{ getMoreText(item.more) }}</span>
               <quick-out-in :shelf="item.article" />
             </li>
           </ul>
@@ -57,6 +57,13 @@ const handleSearch = () => {
   searchRestRoom(params).then(res => {
     restList.value = res.data
   })
+}
+
+// 获取哪个地垫数量更多
+const getMoreText = (num: string) => {
+  if (!num) return ''
+
+  return `---- 最长边为${ num }cm的地垫比较多`
 }
 
 // 获取总数
