@@ -2,7 +2,7 @@
 <template>
   <div class="img-upload-contain">
     <el-radio-group v-model="matching">
-      <el-radio value="skuskc">通过skc-sku货号匹配</el-radio>
+      <el-radio value="skcsku">通过skc-sku货号匹配</el-radio>
       <el-radio label="style">通过型号匹配</el-radio>
     </el-radio-group>
     <el-upload
