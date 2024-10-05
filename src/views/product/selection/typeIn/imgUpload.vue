@@ -51,7 +51,7 @@ const uploadUrl = computed(() => {
 /**
  * 上传图片后的匹配方式
  */
-const matching = ref('skuskc')
+const matching = ref('skcsku')
 
 /**
  * 批量上传sku图片
